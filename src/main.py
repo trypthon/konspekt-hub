@@ -7,7 +7,6 @@ import os
 import sys
 import time
 
-# ===== ЦВЕТА ДЛЯ КОНСОЛИ (ANSI-коды) =====
 class Color:
     GREEN = '\033[92m'
     RED = '\033[91m'
@@ -17,7 +16,7 @@ class Color:
     BOLD = '\033[1m'
     RESET = '\033[0m'
 
-# ===== УТИЛИТЫ =====
+
 def clear_screen():
     """Очищает экран консоли."""
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -33,10 +32,10 @@ def print_header(title):
     print(f"  {title}")
     print(f"{'=' * 50}{Color.RESET}\n")
 
-# ===== ХРАНИЛИЩЕ ДАННЫХ =====
+#бд
 requests_db = []
 
-# ===== ФУНКЦИИ ПРИЛОЖЕНИЯ =====
+
 def show_splash():
     """Заставка при запуске."""
     clear_screen()
@@ -70,6 +69,7 @@ def create_request():
     print("  2 - Предлагаю конспект")
     req_type = input(f"{Color.WHITE}Ваш выбор (1 или 2): {Color.RESET}").strip()
     type_text = "🔍 Ищу" if req_type == "1" else "📤 Предлагаю"
+
     
     new_request = {
         "id": len(requests_db) + 1,
@@ -93,7 +93,7 @@ def view_feed():
         pause()
         return
     
-    # Красивая таблица
+    
     print(f"{Color.BOLD}{'ID':<4} {'Тип':<15} {'Предмет':<15} {'Тема':<15} {'Дата':<8} {'Контакт'}{Color.RESET}")
     print(f"{Color.CYAN}{'─' * 4} {'─' * 15} {'─' * 15} {'─' * 15} {'─' * 8} {'─' * 20}{Color.RESET}")
     
@@ -113,7 +113,7 @@ def leave_contact():
         pause()
         return
     
-    # Показываем ленту для удобства
+    
     print(f"{Color.BOLD}Доступные запросы:{Color.RESET}\n")
     for req in requests_db:
         print(f"  [{req['id']}] {req['type']} | {req['subject']} - {req['topic']} ({req['date']})")
@@ -137,7 +137,7 @@ def leave_contact():
     
     pause()
 
-# ===== ГЛАВНОЕ МЕНЮ =====
+#глав меню
 def main():
     """Главная функция приложения."""
     show_splash()
